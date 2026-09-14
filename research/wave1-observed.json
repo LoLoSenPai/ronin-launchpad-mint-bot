@@ -1,0 +1,1208 @@
+{
+  "checkedAt": "2026-09-14T08:00:06.558Z",
+  "startBlock": "60937607",
+  "head": "60952002",
+  "first400SecondsMintEvents": 508,
+  "samples": [
+    {
+      "block": "60937607",
+      "blockHash": "0x57ed77decd488e817c021b3e6199e8c27c732f631703096e38b518706e270ad8",
+      "hash": "0x28a5dc1506100a3344c8d0081e45083685dad770abaa7c84b3766b82033ec019",
+      "sender": "0xc4d5b6dcc2c27300d5ac8da4cf7247b3235d692f",
+      "target": "0xa8e9fdf57bbd991c3f494273198606632769db99",
+      "selector": "0xfb4d364c",
+      "calldata": {
+        "outerSelector": "0xfb4d364c",
+        "innerSelector": "0x55110a0c",
+        "stageType": 2,
+        "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+        "recipient": "0x306c045af0306C9cf6785887594a31CC95b66D8b",
+        "mintQuantity": "1",
+        "isMintAllPossible": false,
+        "stageIndex": 1,
+        "extraData": "0x"
+      },
+      "mints": [
+        {
+          "param": {
+            "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+            "recipient": "0x306c045af0306C9cf6785887594a31CC95b66D8b",
+            "mintQuantity": "1",
+            "isMintAllPossible": false,
+            "stageIndex": 1,
+            "extraData": "0x"
+          },
+          "stageType": 2,
+          "sender": "0xC4D5B6DCc2C27300d5ac8dA4Cf7247b3235d692f",
+          "minter": "0x306c045af0306C9cf6785887594a31CC95b66D8b",
+          "actualPrice": "0",
+          "actualMintQuantity": "1",
+          "mintedIds": [
+            "1"
+          ],
+          "mintedAmounts": [
+            "1"
+          ],
+          "shares": [
+            {
+              "recipient": "0xb9F3c9CaB590fdAc8F73540B0045703Ec6EA3b52",
+              "value": "0"
+            },
+            {
+              "recipient": "0x1842Dd368b167f84213F69399b50Dc1F3F3C9d83",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "value": "0",
+      "gasUsed": "285105",
+      "maxFeePerGas": "600000000000",
+      "maxPriorityFeePerGas": "550000000000",
+      "effectiveGasPrice": "570000000000",
+      "status": "success",
+      "l1Fee": "0x1c1b358a",
+      "timestamp": "1789344001"
+    },
+    {
+      "block": "60937607",
+      "blockHash": "0x57ed77decd488e817c021b3e6199e8c27c732f631703096e38b518706e270ad8",
+      "hash": "0x5cabe221b697d2df28707b85b0809896624c14d98ebd1f3ba8e5550795934f61",
+      "sender": "0xc227135d9fcd5829a546df3a4e8ea5d541ae7f7e",
+      "target": "0xa8e9fdf57bbd991c3f494273198606632769db99",
+      "selector": "0xfb4d364c",
+      "calldata": {
+        "outerSelector": "0xfb4d364c",
+        "innerSelector": "0x55110a0c",
+        "stageType": 2,
+        "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+        "recipient": "0xC227135d9fCD5829A546DF3a4E8ea5d541Ae7F7E",
+        "mintQuantity": "1",
+        "isMintAllPossible": true,
+        "stageIndex": 1,
+        "extraData": "0x00"
+      },
+      "mints": [
+        {
+          "param": {
+            "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+            "recipient": "0xC227135d9fCD5829A546DF3a4E8ea5d541Ae7F7E",
+            "mintQuantity": "1",
+            "isMintAllPossible": true,
+            "stageIndex": 1,
+            "extraData": "0x00"
+          },
+          "stageType": 2,
+          "sender": "0xC227135d9fCD5829A546DF3a4E8ea5d541Ae7F7E",
+          "minter": "0xC227135d9fCD5829A546DF3a4E8ea5d541Ae7F7E",
+          "actualPrice": "0",
+          "actualMintQuantity": "1",
+          "mintedIds": [
+            "2"
+          ],
+          "mintedAmounts": [
+            "1"
+          ],
+          "shares": [
+            {
+              "recipient": "0xb9F3c9CaB590fdAc8F73540B0045703Ec6EA3b52",
+              "value": "0"
+            },
+            {
+              "recipient": "0x1842Dd368b167f84213F69399b50Dc1F3F3C9d83",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "value": "0",
+      "gasUsed": "269154",
+      "maxFeePerGas": "44000000000",
+      "maxPriorityFeePerGas": "44000000000",
+      "effectiveGasPrice": "44000000000",
+      "status": "success",
+      "l1Fee": "0x1eea5e17",
+      "timestamp": "1789344001"
+    },
+    {
+      "block": "60937607",
+      "blockHash": "0x57ed77decd488e817c021b3e6199e8c27c732f631703096e38b518706e270ad8",
+      "hash": "0xefe37578e75612c5b0f6afd37b3105e78535571155fa063c912bed93d682494c",
+      "sender": "0xf3c9b5978d91c3834601c1375702515d35be0854",
+      "target": "0xa8e9fdf57bbd991c3f494273198606632769db99",
+      "selector": "0xfb4d364c",
+      "calldata": {
+        "outerSelector": "0xfb4d364c",
+        "innerSelector": "0x55110a0c",
+        "stageType": 2,
+        "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+        "recipient": "0xF3C9b5978D91c3834601C1375702515D35Be0854",
+        "mintQuantity": "1",
+        "isMintAllPossible": true,
+        "stageIndex": 1,
+        "extraData": "0x00"
+      },
+      "mints": [
+        {
+          "param": {
+            "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+            "recipient": "0xF3C9b5978D91c3834601C1375702515D35Be0854",
+            "mintQuantity": "1",
+            "isMintAllPossible": true,
+            "stageIndex": 1,
+            "extraData": "0x00"
+          },
+          "stageType": 2,
+          "sender": "0xF3C9b5978D91c3834601C1375702515D35Be0854",
+          "minter": "0xF3C9b5978D91c3834601C1375702515D35Be0854",
+          "actualPrice": "0",
+          "actualMintQuantity": "1",
+          "mintedIds": [
+            "3"
+          ],
+          "mintedAmounts": [
+            "1"
+          ],
+          "shares": [
+            {
+              "recipient": "0xb9F3c9CaB590fdAc8F73540B0045703Ec6EA3b52",
+              "value": "0"
+            },
+            {
+              "recipient": "0x1842Dd368b167f84213F69399b50Dc1F3F3C9d83",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "value": "0",
+      "gasUsed": "269154",
+      "maxFeePerGas": "44000000000",
+      "maxPriorityFeePerGas": "44000000000",
+      "effectiveGasPrice": "44000000000",
+      "status": "success",
+      "l1Fee": "0x1eea5e17",
+      "timestamp": "1789344001"
+    },
+    {
+      "block": "60937607",
+      "blockHash": "0x57ed77decd488e817c021b3e6199e8c27c732f631703096e38b518706e270ad8",
+      "hash": "0xa5d6d56cfa7b90e39e7e5537a6cd34318944a72f3f6b10744f64280793fcc8c6",
+      "sender": "0x08d518f321eed47753a1307ecf689cbb255fdd26",
+      "target": "0xa8e9fdf57bbd991c3f494273198606632769db99",
+      "selector": "0xfb4d364c",
+      "calldata": {
+        "outerSelector": "0xfb4d364c",
+        "innerSelector": "0x55110a0c",
+        "stageType": 2,
+        "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+        "recipient": "0x08d518f321EeD47753a1307Ecf689CBb255Fdd26",
+        "mintQuantity": "1",
+        "isMintAllPossible": true,
+        "stageIndex": 1,
+        "extraData": "0x00"
+      },
+      "mints": [
+        {
+          "param": {
+            "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+            "recipient": "0x08d518f321EeD47753a1307Ecf689CBb255Fdd26",
+            "mintQuantity": "1",
+            "isMintAllPossible": true,
+            "stageIndex": 1,
+            "extraData": "0x00"
+          },
+          "stageType": 2,
+          "sender": "0x08d518f321EeD47753a1307Ecf689CBb255Fdd26",
+          "minter": "0x08d518f321EeD47753a1307Ecf689CBb255Fdd26",
+          "actualPrice": "0",
+          "actualMintQuantity": "1",
+          "mintedIds": [
+            "4"
+          ],
+          "mintedAmounts": [
+            "1"
+          ],
+          "shares": [
+            {
+              "recipient": "0xb9F3c9CaB590fdAc8F73540B0045703Ec6EA3b52",
+              "value": "0"
+            },
+            {
+              "recipient": "0x1842Dd368b167f84213F69399b50Dc1F3F3C9d83",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "value": "0",
+      "gasUsed": "269154",
+      "maxFeePerGas": "44000000000",
+      "maxPriorityFeePerGas": "44000000000",
+      "effectiveGasPrice": "44000000000",
+      "status": "success",
+      "l1Fee": "0x1eea5e17",
+      "timestamp": "1789344001"
+    },
+    {
+      "block": "60937607",
+      "blockHash": "0x57ed77decd488e817c021b3e6199e8c27c732f631703096e38b518706e270ad8",
+      "hash": "0x510780cb98feb3cfb09b6588125e63d0af8953276a1a07b03f945cd69cbca0e8",
+      "sender": "0x2aabc7e07308ecafd3a7d0c012abf25f93d8031f",
+      "target": "0xa8e9fdf57bbd991c3f494273198606632769db99",
+      "selector": "0xfb4d364c",
+      "calldata": {
+        "outerSelector": "0xfb4d364c",
+        "innerSelector": "0x55110a0c",
+        "stageType": 2,
+        "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+        "recipient": "0x2aAbC7E07308ECafD3a7d0C012Abf25f93D8031f",
+        "mintQuantity": "1",
+        "isMintAllPossible": true,
+        "stageIndex": 1,
+        "extraData": "0x00"
+      },
+      "mints": [
+        {
+          "param": {
+            "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+            "recipient": "0x2aAbC7E07308ECafD3a7d0C012Abf25f93D8031f",
+            "mintQuantity": "1",
+            "isMintAllPossible": true,
+            "stageIndex": 1,
+            "extraData": "0x00"
+          },
+          "stageType": 2,
+          "sender": "0x2aAbC7E07308ECafD3a7d0C012Abf25f93D8031f",
+          "minter": "0x2aAbC7E07308ECafD3a7d0C012Abf25f93D8031f",
+          "actualPrice": "0",
+          "actualMintQuantity": "1",
+          "mintedIds": [
+            "5"
+          ],
+          "mintedAmounts": [
+            "1"
+          ],
+          "shares": [
+            {
+              "recipient": "0xb9F3c9CaB590fdAc8F73540B0045703Ec6EA3b52",
+              "value": "0"
+            },
+            {
+              "recipient": "0x1842Dd368b167f84213F69399b50Dc1F3F3C9d83",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "value": "0",
+      "gasUsed": "269154",
+      "maxFeePerGas": "44000000000",
+      "maxPriorityFeePerGas": "44000000000",
+      "effectiveGasPrice": "44000000000",
+      "status": "success",
+      "l1Fee": "0x1eea5e17",
+      "timestamp": "1789344001"
+    },
+    {
+      "block": "60937607",
+      "blockHash": "0x57ed77decd488e817c021b3e6199e8c27c732f631703096e38b518706e270ad8",
+      "hash": "0x44c47f2b3a55bf326316b3c44684b5c1dbfb18bb57cc4eeded3d6f44795663aa",
+      "sender": "0x478d01b5d640c7392b9ba41ac0bf000f65dd1b9a",
+      "target": "0xa8e9fdf57bbd991c3f494273198606632769db99",
+      "selector": "0xfb4d364c",
+      "calldata": {
+        "outerSelector": "0xfb4d364c",
+        "innerSelector": "0x55110a0c",
+        "stageType": 2,
+        "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+        "recipient": "0x478d01b5d640c7392B9bA41ac0bF000F65dd1b9a",
+        "mintQuantity": "1",
+        "isMintAllPossible": true,
+        "stageIndex": 1,
+        "extraData": "0x00"
+      },
+      "mints": [
+        {
+          "param": {
+            "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+            "recipient": "0x478d01b5d640c7392B9bA41ac0bF000F65dd1b9a",
+            "mintQuantity": "1",
+            "isMintAllPossible": true,
+            "stageIndex": 1,
+            "extraData": "0x00"
+          },
+          "stageType": 2,
+          "sender": "0x478d01b5d640c7392B9bA41ac0bF000F65dd1b9a",
+          "minter": "0x478d01b5d640c7392B9bA41ac0bF000F65dd1b9a",
+          "actualPrice": "0",
+          "actualMintQuantity": "1",
+          "mintedIds": [
+            "6"
+          ],
+          "mintedAmounts": [
+            "1"
+          ],
+          "shares": [
+            {
+              "recipient": "0xb9F3c9CaB590fdAc8F73540B0045703Ec6EA3b52",
+              "value": "0"
+            },
+            {
+              "recipient": "0x1842Dd368b167f84213F69399b50Dc1F3F3C9d83",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "value": "0",
+      "gasUsed": "269142",
+      "maxFeePerGas": "44000000000",
+      "maxPriorityFeePerGas": "44000000000",
+      "effectiveGasPrice": "44000000000",
+      "status": "success",
+      "l1Fee": "0x1eea5e17",
+      "timestamp": "1789344001"
+    },
+    {
+      "block": "60937607",
+      "blockHash": "0x57ed77decd488e817c021b3e6199e8c27c732f631703096e38b518706e270ad8",
+      "hash": "0xa1421a032d081b1784653d82e5465a0813744208219d2da0be30c8c272c3e5bd",
+      "sender": "0x427a2a6203fae8a8216fa73c8cf02fb5ecf25f67",
+      "target": "0xa8e9fdf57bbd991c3f494273198606632769db99",
+      "selector": "0xfb4d364c",
+      "calldata": {
+        "outerSelector": "0xfb4d364c",
+        "innerSelector": "0x55110a0c",
+        "stageType": 2,
+        "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+        "recipient": "0x427a2A6203fae8A8216FA73c8cF02Fb5ecf25F67",
+        "mintQuantity": "1",
+        "isMintAllPossible": true,
+        "stageIndex": 1,
+        "extraData": "0x00"
+      },
+      "mints": [
+        {
+          "param": {
+            "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+            "recipient": "0x427a2A6203fae8A8216FA73c8cF02Fb5ecf25F67",
+            "mintQuantity": "1",
+            "isMintAllPossible": true,
+            "stageIndex": 1,
+            "extraData": "0x00"
+          },
+          "stageType": 2,
+          "sender": "0x427a2A6203fae8A8216FA73c8cF02Fb5ecf25F67",
+          "minter": "0x427a2A6203fae8A8216FA73c8cF02Fb5ecf25F67",
+          "actualPrice": "0",
+          "actualMintQuantity": "1",
+          "mintedIds": [
+            "7"
+          ],
+          "mintedAmounts": [
+            "1"
+          ],
+          "shares": [
+            {
+              "recipient": "0xb9F3c9CaB590fdAc8F73540B0045703Ec6EA3b52",
+              "value": "0"
+            },
+            {
+              "recipient": "0x1842Dd368b167f84213F69399b50Dc1F3F3C9d83",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "value": "0",
+      "gasUsed": "269154",
+      "maxFeePerGas": "44000000000",
+      "maxPriorityFeePerGas": "44000000000",
+      "effectiveGasPrice": "44000000000",
+      "status": "success",
+      "l1Fee": "0x1eea5e17",
+      "timestamp": "1789344001"
+    },
+    {
+      "block": "60937607",
+      "blockHash": "0x57ed77decd488e817c021b3e6199e8c27c732f631703096e38b518706e270ad8",
+      "hash": "0x118f3b14b5a6065dec5e59f11bb77f5c82efff1c1800b4e99d0b1009c988db83",
+      "sender": "0x166d2272b4f6104d6b90dab818312af5e830b51e",
+      "target": "0xa8e9fdf57bbd991c3f494273198606632769db99",
+      "selector": "0xfb4d364c",
+      "calldata": {
+        "outerSelector": "0xfb4d364c",
+        "innerSelector": "0x55110a0c",
+        "stageType": 2,
+        "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+        "recipient": "0x166d2272b4f6104D6B90dAB818312aF5E830B51E",
+        "mintQuantity": "1",
+        "isMintAllPossible": true,
+        "stageIndex": 1,
+        "extraData": "0x00"
+      },
+      "mints": [
+        {
+          "param": {
+            "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+            "recipient": "0x166d2272b4f6104D6B90dAB818312aF5E830B51E",
+            "mintQuantity": "1",
+            "isMintAllPossible": true,
+            "stageIndex": 1,
+            "extraData": "0x00"
+          },
+          "stageType": 2,
+          "sender": "0x166d2272b4f6104D6B90dAB818312aF5E830B51E",
+          "minter": "0x166d2272b4f6104D6B90dAB818312aF5E830B51E",
+          "actualPrice": "0",
+          "actualMintQuantity": "1",
+          "mintedIds": [
+            "8"
+          ],
+          "mintedAmounts": [
+            "1"
+          ],
+          "shares": [
+            {
+              "recipient": "0xb9F3c9CaB590fdAc8F73540B0045703Ec6EA3b52",
+              "value": "0"
+            },
+            {
+              "recipient": "0x1842Dd368b167f84213F69399b50Dc1F3F3C9d83",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "value": "0",
+      "gasUsed": "269154",
+      "maxFeePerGas": "44000000000",
+      "maxPriorityFeePerGas": "44000000000",
+      "effectiveGasPrice": "44000000000",
+      "status": "success",
+      "l1Fee": "0x1eea5e17",
+      "timestamp": "1789344001"
+    },
+    {
+      "block": "60937607",
+      "blockHash": "0x57ed77decd488e817c021b3e6199e8c27c732f631703096e38b518706e270ad8",
+      "hash": "0x5dcef33f08b93121b35e6e2b5891faac7d422b4dcd290c2e5e824f8cb7e1d8f3",
+      "sender": "0x4161ac6047de275d5fed5750e3680e5f7176e71e",
+      "target": "0xa8e9fdf57bbd991c3f494273198606632769db99",
+      "selector": "0xfb4d364c",
+      "calldata": {
+        "outerSelector": "0xfb4d364c",
+        "innerSelector": "0x55110a0c",
+        "stageType": 2,
+        "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+        "recipient": "0x4161aC6047de275D5Fed5750e3680e5f7176e71E",
+        "mintQuantity": "1",
+        "isMintAllPossible": true,
+        "stageIndex": 1,
+        "extraData": "0x00"
+      },
+      "mints": [
+        {
+          "param": {
+            "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+            "recipient": "0x4161aC6047de275D5Fed5750e3680e5f7176e71E",
+            "mintQuantity": "1",
+            "isMintAllPossible": true,
+            "stageIndex": 1,
+            "extraData": "0x00"
+          },
+          "stageType": 2,
+          "sender": "0x4161aC6047de275D5Fed5750e3680e5f7176e71E",
+          "minter": "0x4161aC6047de275D5Fed5750e3680e5f7176e71E",
+          "actualPrice": "0",
+          "actualMintQuantity": "1",
+          "mintedIds": [
+            "9"
+          ],
+          "mintedAmounts": [
+            "1"
+          ],
+          "shares": [
+            {
+              "recipient": "0xb9F3c9CaB590fdAc8F73540B0045703Ec6EA3b52",
+              "value": "0"
+            },
+            {
+              "recipient": "0x1842Dd368b167f84213F69399b50Dc1F3F3C9d83",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "value": "0",
+      "gasUsed": "269154",
+      "maxFeePerGas": "44000000000",
+      "maxPriorityFeePerGas": "44000000000",
+      "effectiveGasPrice": "44000000000",
+      "status": "success",
+      "l1Fee": "0x1eea5e17",
+      "timestamp": "1789344001"
+    },
+    {
+      "block": "60937607",
+      "blockHash": "0x57ed77decd488e817c021b3e6199e8c27c732f631703096e38b518706e270ad8",
+      "hash": "0x09d84df21218a8f5363aeeb7dc6c00034825d496ec2d50331bcf72b0bd592cf8",
+      "sender": "0xb0bd7cd5cd194b5a0a2f8d16e1747be908551d7a",
+      "target": "0xa8e9fdf57bbd991c3f494273198606632769db99",
+      "selector": "0xfb4d364c",
+      "calldata": {
+        "outerSelector": "0xfb4d364c",
+        "innerSelector": "0x55110a0c",
+        "stageType": 2,
+        "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+        "recipient": "0xB0bd7CD5CD194B5a0A2f8D16e1747bE908551d7A",
+        "mintQuantity": "1",
+        "isMintAllPossible": true,
+        "stageIndex": 1,
+        "extraData": "0x00"
+      },
+      "mints": [
+        {
+          "param": {
+            "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+            "recipient": "0xB0bd7CD5CD194B5a0A2f8D16e1747bE908551d7A",
+            "mintQuantity": "1",
+            "isMintAllPossible": true,
+            "stageIndex": 1,
+            "extraData": "0x00"
+          },
+          "stageType": 2,
+          "sender": "0xB0bd7CD5CD194B5a0A2f8D16e1747bE908551d7A",
+          "minter": "0xB0bd7CD5CD194B5a0A2f8D16e1747bE908551d7A",
+          "actualPrice": "0",
+          "actualMintQuantity": "1",
+          "mintedIds": [
+            "10"
+          ],
+          "mintedAmounts": [
+            "1"
+          ],
+          "shares": [
+            {
+              "recipient": "0xb9F3c9CaB590fdAc8F73540B0045703Ec6EA3b52",
+              "value": "0"
+            },
+            {
+              "recipient": "0x1842Dd368b167f84213F69399b50Dc1F3F3C9d83",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "value": "0",
+      "gasUsed": "269154",
+      "maxFeePerGas": "44000000000",
+      "maxPriorityFeePerGas": "44000000000",
+      "effectiveGasPrice": "44000000000",
+      "status": "success",
+      "l1Fee": "0x1eea5e17",
+      "timestamp": "1789344001"
+    },
+    {
+      "block": "60937607",
+      "blockHash": "0x57ed77decd488e817c021b3e6199e8c27c732f631703096e38b518706e270ad8",
+      "hash": "0xa66d41ad4285a53c72508ff92f992860de6948cce3824f65f1eed9362be8958e",
+      "sender": "0x748487ba162b5c2eb62bf0dd40860d2d738d81ab",
+      "target": "0xa8e9fdf57bbd991c3f494273198606632769db99",
+      "selector": "0xfb4d364c",
+      "calldata": {
+        "outerSelector": "0xfb4d364c",
+        "innerSelector": "0x55110a0c",
+        "stageType": 2,
+        "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+        "recipient": "0x748487ba162B5C2eb62BF0dd40860D2D738d81Ab",
+        "mintQuantity": "1",
+        "isMintAllPossible": true,
+        "stageIndex": 1,
+        "extraData": "0x00"
+      },
+      "mints": [
+        {
+          "param": {
+            "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+            "recipient": "0x748487ba162B5C2eb62BF0dd40860D2D738d81Ab",
+            "mintQuantity": "1",
+            "isMintAllPossible": true,
+            "stageIndex": 1,
+            "extraData": "0x00"
+          },
+          "stageType": 2,
+          "sender": "0x748487ba162B5C2eb62BF0dd40860D2D738d81Ab",
+          "minter": "0x748487ba162B5C2eb62BF0dd40860D2D738d81Ab",
+          "actualPrice": "0",
+          "actualMintQuantity": "1",
+          "mintedIds": [
+            "11"
+          ],
+          "mintedAmounts": [
+            "1"
+          ],
+          "shares": [
+            {
+              "recipient": "0xb9F3c9CaB590fdAc8F73540B0045703Ec6EA3b52",
+              "value": "0"
+            },
+            {
+              "recipient": "0x1842Dd368b167f84213F69399b50Dc1F3F3C9d83",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "value": "0",
+      "gasUsed": "268882",
+      "maxFeePerGas": "42000000000",
+      "maxPriorityFeePerGas": "42000000000",
+      "effectiveGasPrice": "42000000000",
+      "status": "success",
+      "l1Fee": "0x1c432992",
+      "timestamp": "1789344001"
+    },
+    {
+      "block": "60937609",
+      "blockHash": "0xff30ed805036417f30799c3d48085564a07f47a28f6a9b3d61f7c3b7980f4be0",
+      "hash": "0x642ee4b55bc6aa79b96d9aa8eb0ff62a4ba98ed569b462561d07dd103f815c5c",
+      "sender": "0xfce6a0f715326dfe461550d906a99fc44cfa30f8",
+      "target": "0xa8e9fdf57bbd991c3f494273198606632769db99",
+      "selector": "0xfb4d364c",
+      "calldata": {
+        "outerSelector": "0xfb4d364c",
+        "innerSelector": "0x55110a0c",
+        "stageType": 2,
+        "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+        "recipient": "0xfcE6A0f715326DFe461550D906A99fc44cFa30f8",
+        "mintQuantity": "1",
+        "isMintAllPossible": true,
+        "stageIndex": 1,
+        "extraData": "0x00"
+      },
+      "mints": [
+        {
+          "param": {
+            "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+            "recipient": "0xfcE6A0f715326DFe461550D906A99fc44cFa30f8",
+            "mintQuantity": "1",
+            "isMintAllPossible": true,
+            "stageIndex": 1,
+            "extraData": "0x00"
+          },
+          "stageType": 2,
+          "sender": "0xfcE6A0f715326DFe461550D906A99fc44cFa30f8",
+          "minter": "0xfcE6A0f715326DFe461550D906A99fc44cFa30f8",
+          "actualPrice": "0",
+          "actualMintQuantity": "1",
+          "mintedIds": [
+            "12"
+          ],
+          "mintedAmounts": [
+            "1"
+          ],
+          "shares": [
+            {
+              "recipient": "0xb9F3c9CaB590fdAc8F73540B0045703Ec6EA3b52",
+              "value": "0"
+            },
+            {
+              "recipient": "0x1842Dd368b167f84213F69399b50Dc1F3F3C9d83",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "value": "0",
+      "gasUsed": "268882",
+      "maxFeePerGas": "41000000000",
+      "maxPriorityFeePerGas": "1000000000",
+      "effectiveGasPrice": "21000000000",
+      "status": "success",
+      "l1Fee": "0x1ce2f9b1",
+      "timestamp": "1789344005"
+    },
+    {
+      "block": "60937610",
+      "blockHash": "0x3ca9ede4cebfc001b98fdb6f681b93e8ead3e77f31189da1f31ec663d7426d58",
+      "hash": "0x9b2cd59e107e4e05be9617bc79f5cc7bd2bad0bf864be7a7566d6ae2c51103d5",
+      "sender": "0xd6bb1ab23ccc216e4b0562c6efd665f7d7bc8ecf",
+      "target": "0xa8e9fdf57bbd991c3f494273198606632769db99",
+      "selector": "0xfb4d364c",
+      "calldata": {
+        "outerSelector": "0xfb4d364c",
+        "innerSelector": "0x55110a0c",
+        "stageType": 2,
+        "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+        "recipient": "0xd6Bb1aB23CCc216e4b0562c6eFD665f7D7BC8ecf",
+        "mintQuantity": "1",
+        "isMintAllPossible": true,
+        "stageIndex": 1,
+        "extraData": "0x00"
+      },
+      "mints": [
+        {
+          "param": {
+            "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+            "recipient": "0xd6Bb1aB23CCc216e4b0562c6eFD665f7D7BC8ecf",
+            "mintQuantity": "1",
+            "isMintAllPossible": true,
+            "stageIndex": 1,
+            "extraData": "0x00"
+          },
+          "stageType": 2,
+          "sender": "0xd6Bb1aB23CCc216e4b0562c6eFD665f7D7BC8ecf",
+          "minter": "0xd6Bb1aB23CCc216e4b0562c6eFD665f7D7BC8ecf",
+          "actualPrice": "0",
+          "actualMintQuantity": "1",
+          "mintedIds": [
+            "13"
+          ],
+          "mintedAmounts": [
+            "1"
+          ],
+          "shares": [
+            {
+              "recipient": "0xb9F3c9CaB590fdAc8F73540B0045703Ec6EA3b52",
+              "value": "0"
+            },
+            {
+              "recipient": "0x1842Dd368b167f84213F69399b50Dc1F3F3C9d83",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "value": "0",
+      "gasUsed": "268882",
+      "maxFeePerGas": "41000000000",
+      "maxPriorityFeePerGas": "1000000000",
+      "effectiveGasPrice": "21000000000",
+      "status": "success",
+      "l1Fee": "0x1d1f37f9",
+      "timestamp": "1789344007"
+    },
+    {
+      "block": "60937610",
+      "blockHash": "0x3ca9ede4cebfc001b98fdb6f681b93e8ead3e77f31189da1f31ec663d7426d58",
+      "hash": "0x4782ee9b3858ee51de682496f1caaab442e58e3c2d556cac2dcc74bf45f81245",
+      "sender": "0x9d70948dafd2151714ba41486b4a4fda8527db74",
+      "target": "0xa8e9fdf57bbd991c3f494273198606632769db99",
+      "selector": "0xfb4d364c",
+      "calldata": {
+        "outerSelector": "0xfb4d364c",
+        "innerSelector": "0x55110a0c",
+        "stageType": 2,
+        "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+        "recipient": "0x9d70948dAfd2151714ba41486B4A4fda8527DB74",
+        "mintQuantity": "1",
+        "isMintAllPossible": true,
+        "stageIndex": 1,
+        "extraData": "0x00"
+      },
+      "mints": [
+        {
+          "param": {
+            "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+            "recipient": "0x9d70948dAfd2151714ba41486B4A4fda8527DB74",
+            "mintQuantity": "1",
+            "isMintAllPossible": true,
+            "stageIndex": 1,
+            "extraData": "0x00"
+          },
+          "stageType": 2,
+          "sender": "0x9d70948dAfd2151714ba41486B4A4fda8527DB74",
+          "minter": "0x9d70948dAfd2151714ba41486B4A4fda8527DB74",
+          "actualPrice": "0",
+          "actualMintQuantity": "1",
+          "mintedIds": [
+            "14"
+          ],
+          "mintedAmounts": [
+            "1"
+          ],
+          "shares": [
+            {
+              "recipient": "0xb9F3c9CaB590fdAc8F73540B0045703Ec6EA3b52",
+              "value": "0"
+            },
+            {
+              "recipient": "0x1842Dd368b167f84213F69399b50Dc1F3F3C9d83",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "value": "0",
+      "gasUsed": "268882",
+      "maxFeePerGas": "41000000000",
+      "maxPriorityFeePerGas": "1000000000",
+      "effectiveGasPrice": "21000000000",
+      "status": "success",
+      "l1Fee": "0x1d1f37f9",
+      "timestamp": "1789344007"
+    },
+    {
+      "block": "60937610",
+      "blockHash": "0x3ca9ede4cebfc001b98fdb6f681b93e8ead3e77f31189da1f31ec663d7426d58",
+      "hash": "0x49476a420818dedabc97b25f6c2564d0e44b9bd8868db2d02f1aa9d406c43036",
+      "sender": "0x49ce41f6d847d2f65b4bc8cebe8fca15ad9521cc",
+      "target": "0xa8e9fdf57bbd991c3f494273198606632769db99",
+      "selector": "0xfb4d364c",
+      "calldata": {
+        "outerSelector": "0xfb4d364c",
+        "innerSelector": "0x55110a0c",
+        "stageType": 2,
+        "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+        "recipient": "0x49cE41f6D847D2F65b4Bc8CeBE8Fca15AD9521cC",
+        "mintQuantity": "1",
+        "isMintAllPossible": true,
+        "stageIndex": 1,
+        "extraData": "0x00"
+      },
+      "mints": [
+        {
+          "param": {
+            "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+            "recipient": "0x49cE41f6D847D2F65b4Bc8CeBE8Fca15AD9521cC",
+            "mintQuantity": "1",
+            "isMintAllPossible": true,
+            "stageIndex": 1,
+            "extraData": "0x00"
+          },
+          "stageType": 2,
+          "sender": "0x49cE41f6D847D2F65b4Bc8CeBE8Fca15AD9521cC",
+          "minter": "0x49cE41f6D847D2F65b4Bc8CeBE8Fca15AD9521cC",
+          "actualPrice": "0",
+          "actualMintQuantity": "1",
+          "mintedIds": [
+            "15"
+          ],
+          "mintedAmounts": [
+            "1"
+          ],
+          "shares": [
+            {
+              "recipient": "0xb9F3c9CaB590fdAc8F73540B0045703Ec6EA3b52",
+              "value": "0"
+            },
+            {
+              "recipient": "0x1842Dd368b167f84213F69399b50Dc1F3F3C9d83",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "value": "0",
+      "gasUsed": "268882",
+      "maxFeePerGas": "41000000000",
+      "maxPriorityFeePerGas": "1000000000",
+      "effectiveGasPrice": "21000000000",
+      "status": "success",
+      "l1Fee": "0x1cf6f09e",
+      "timestamp": "1789344007"
+    },
+    {
+      "block": "60937610",
+      "blockHash": "0x3ca9ede4cebfc001b98fdb6f681b93e8ead3e77f31189da1f31ec663d7426d58",
+      "hash": "0x3d0f12d1f5774fba5f1681396aceca0fe638fbf876e869ac09df2299d863ce3f",
+      "sender": "0x5ad228970488b2e42f804cd874fb225c0c2c60f2",
+      "target": "0xa8e9fdf57bbd991c3f494273198606632769db99",
+      "selector": "0xfb4d364c",
+      "calldata": {
+        "outerSelector": "0xfb4d364c",
+        "innerSelector": "0x55110a0c",
+        "stageType": 2,
+        "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+        "recipient": "0x5AD228970488B2E42F804cD874fb225C0c2C60f2",
+        "mintQuantity": "1",
+        "isMintAllPossible": true,
+        "stageIndex": 1,
+        "extraData": "0x00"
+      },
+      "mints": [
+        {
+          "param": {
+            "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+            "recipient": "0x5AD228970488B2E42F804cD874fb225C0c2C60f2",
+            "mintQuantity": "1",
+            "isMintAllPossible": true,
+            "stageIndex": 1,
+            "extraData": "0x00"
+          },
+          "stageType": 2,
+          "sender": "0x5AD228970488B2E42F804cD874fb225C0c2C60f2",
+          "minter": "0x5AD228970488B2E42F804cD874fb225C0c2C60f2",
+          "actualPrice": "0",
+          "actualMintQuantity": "1",
+          "mintedIds": [
+            "16"
+          ],
+          "mintedAmounts": [
+            "1"
+          ],
+          "shares": [
+            {
+              "recipient": "0xb9F3c9CaB590fdAc8F73540B0045703Ec6EA3b52",
+              "value": "0"
+            },
+            {
+              "recipient": "0x1842Dd368b167f84213F69399b50Dc1F3F3C9d83",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "value": "0",
+      "gasUsed": "268882",
+      "maxFeePerGas": "41000000000",
+      "maxPriorityFeePerGas": "1000000000",
+      "effectiveGasPrice": "21000000000",
+      "status": "success",
+      "l1Fee": "0x1ccea944",
+      "timestamp": "1789344007"
+    },
+    {
+      "block": "60937610",
+      "blockHash": "0x3ca9ede4cebfc001b98fdb6f681b93e8ead3e77f31189da1f31ec663d7426d58",
+      "hash": "0xa0f1c77c7548135fa1dd2e7f53c354c906ffc39bf1df2d97c6e5d3b1e0df9dbe",
+      "sender": "0x30553449e8ff75fd019b0efc5e44fc0021c1e47c",
+      "target": "0xa8e9fdf57bbd991c3f494273198606632769db99",
+      "selector": "0xfb4d364c",
+      "calldata": {
+        "outerSelector": "0xfb4d364c",
+        "innerSelector": "0x55110a0c",
+        "stageType": 2,
+        "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+        "recipient": "0x30553449E8ff75fD019b0EFC5e44fc0021c1E47c",
+        "mintQuantity": "1",
+        "isMintAllPossible": true,
+        "stageIndex": 1,
+        "extraData": "0x00"
+      },
+      "mints": [
+        {
+          "param": {
+            "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+            "recipient": "0x30553449E8ff75fD019b0EFC5e44fc0021c1E47c",
+            "mintQuantity": "1",
+            "isMintAllPossible": true,
+            "stageIndex": 1,
+            "extraData": "0x00"
+          },
+          "stageType": 2,
+          "sender": "0x30553449E8ff75fD019b0EFC5e44fc0021c1E47c",
+          "minter": "0x30553449E8ff75fD019b0EFC5e44fc0021c1E47c",
+          "actualPrice": "0",
+          "actualMintQuantity": "1",
+          "mintedIds": [
+            "17"
+          ],
+          "mintedAmounts": [
+            "1"
+          ],
+          "shares": [
+            {
+              "recipient": "0xb9F3c9CaB590fdAc8F73540B0045703Ec6EA3b52",
+              "value": "0"
+            },
+            {
+              "recipient": "0x1842Dd368b167f84213F69399b50Dc1F3F3C9d83",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "value": "0",
+      "gasUsed": "268870",
+      "maxFeePerGas": "41000000000",
+      "maxPriorityFeePerGas": "1000000000",
+      "effectiveGasPrice": "21000000000",
+      "status": "success",
+      "l1Fee": "0x1d1f37f9",
+      "timestamp": "1789344007"
+    },
+    {
+      "block": "60937610",
+      "blockHash": "0x3ca9ede4cebfc001b98fdb6f681b93e8ead3e77f31189da1f31ec663d7426d58",
+      "hash": "0xab411161554db29527751cbcbc0cf80c170fed95f54d409beead4c9ae9385dba",
+      "sender": "0xb485e290e947d16026f46db66da37cd9fde9535f",
+      "target": "0xa8e9fdf57bbd991c3f494273198606632769db99",
+      "selector": "0xfb4d364c",
+      "calldata": {
+        "outerSelector": "0xfb4d364c",
+        "innerSelector": "0x55110a0c",
+        "stageType": 2,
+        "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+        "recipient": "0xB485E290E947D16026f46Db66DA37cd9FdE9535F",
+        "mintQuantity": "1",
+        "isMintAllPossible": true,
+        "stageIndex": 1,
+        "extraData": "0x00"
+      },
+      "mints": [
+        {
+          "param": {
+            "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+            "recipient": "0xB485E290E947D16026f46Db66DA37cd9FdE9535F",
+            "mintQuantity": "1",
+            "isMintAllPossible": true,
+            "stageIndex": 1,
+            "extraData": "0x00"
+          },
+          "stageType": 2,
+          "sender": "0xB485E290E947D16026f46Db66DA37cd9FdE9535F",
+          "minter": "0xB485E290E947D16026f46Db66DA37cd9FdE9535F",
+          "actualPrice": "0",
+          "actualMintQuantity": "1",
+          "mintedIds": [
+            "18"
+          ],
+          "mintedAmounts": [
+            "1"
+          ],
+          "shares": [
+            {
+              "recipient": "0xb9F3c9CaB590fdAc8F73540B0045703Ec6EA3b52",
+              "value": "0"
+            },
+            {
+              "recipient": "0x1842Dd368b167f84213F69399b50Dc1F3F3C9d83",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "value": "0",
+      "gasUsed": "268882",
+      "maxFeePerGas": "41000000000",
+      "maxPriorityFeePerGas": "1000000000",
+      "effectiveGasPrice": "21000000000",
+      "status": "success",
+      "l1Fee": "0x1ccea944",
+      "timestamp": "1789344007"
+    },
+    {
+      "block": "60937610",
+      "blockHash": "0x3ca9ede4cebfc001b98fdb6f681b93e8ead3e77f31189da1f31ec663d7426d58",
+      "hash": "0xed6a2cec98da91003944b46cb2a429a2446c9f485df5b0ba41e59a8fa7a2b880",
+      "sender": "0x26ac07124a71d1da37c52afb850d04ab12bdbaf9",
+      "target": "0xa8e9fdf57bbd991c3f494273198606632769db99",
+      "selector": "0xfb4d364c",
+      "calldata": {
+        "outerSelector": "0xfb4d364c",
+        "innerSelector": "0x55110a0c",
+        "stageType": 2,
+        "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+        "recipient": "0x26AC07124A71d1da37C52afb850d04Ab12BDBaf9",
+        "mintQuantity": "1",
+        "isMintAllPossible": true,
+        "stageIndex": 1,
+        "extraData": "0x00"
+      },
+      "mints": [
+        {
+          "param": {
+            "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+            "recipient": "0x26AC07124A71d1da37C52afb850d04Ab12BDBaf9",
+            "mintQuantity": "1",
+            "isMintAllPossible": true,
+            "stageIndex": 1,
+            "extraData": "0x00"
+          },
+          "stageType": 2,
+          "sender": "0x26AC07124A71d1da37C52afb850d04Ab12BDBaf9",
+          "minter": "0x26AC07124A71d1da37C52afb850d04Ab12BDBaf9",
+          "actualPrice": "0",
+          "actualMintQuantity": "1",
+          "mintedIds": [
+            "19"
+          ],
+          "mintedAmounts": [
+            "1"
+          ],
+          "shares": [
+            {
+              "recipient": "0xb9F3c9CaB590fdAc8F73540B0045703Ec6EA3b52",
+              "value": "0"
+            },
+            {
+              "recipient": "0x1842Dd368b167f84213F69399b50Dc1F3F3C9d83",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "value": "0",
+      "gasUsed": "268882",
+      "maxFeePerGas": "41000000000",
+      "maxPriorityFeePerGas": "1000000000",
+      "effectiveGasPrice": "21000000000",
+      "status": "success",
+      "l1Fee": "0x1d1f37f9",
+      "timestamp": "1789344007"
+    },
+    {
+      "block": "60937610",
+      "blockHash": "0x3ca9ede4cebfc001b98fdb6f681b93e8ead3e77f31189da1f31ec663d7426d58",
+      "hash": "0x338b215a702181ca90af870cae811f7d6c3b250dad66d209e768030d27cc71e9",
+      "sender": "0xba777128902ef22af6d8e6ed1d36f76484e5aed8",
+      "target": "0xa8e9fdf57bbd991c3f494273198606632769db99",
+      "selector": "0xfb4d364c",
+      "calldata": {
+        "outerSelector": "0xfb4d364c",
+        "innerSelector": "0x55110a0c",
+        "stageType": 2,
+        "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+        "recipient": "0xBA777128902EF22Af6D8e6eD1D36f76484e5AeD8",
+        "mintQuantity": "1",
+        "isMintAllPossible": true,
+        "stageIndex": 1,
+        "extraData": "0x00"
+      },
+      "mints": [
+        {
+          "param": {
+            "nftContract": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+            "recipient": "0xBA777128902EF22Af6D8e6eD1D36f76484e5AeD8",
+            "mintQuantity": "1",
+            "isMintAllPossible": true,
+            "stageIndex": 1,
+            "extraData": "0x00"
+          },
+          "stageType": 2,
+          "sender": "0xBA777128902EF22Af6D8e6eD1D36f76484e5AeD8",
+          "minter": "0xBA777128902EF22Af6D8e6eD1D36f76484e5AeD8",
+          "actualPrice": "0",
+          "actualMintQuantity": "1",
+          "mintedIds": [
+            "20"
+          ],
+          "mintedAmounts": [
+            "1"
+          ],
+          "shares": [
+            {
+              "recipient": "0xb9F3c9CaB590fdAc8F73540B0045703Ec6EA3b52",
+              "value": "0"
+            },
+            {
+              "recipient": "0x1842Dd368b167f84213F69399b50Dc1F3F3C9d83",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "value": "0",
+      "gasUsed": "268882",
+      "maxFeePerGas": "41000000000",
+      "maxPriorityFeePerGas": "1000000000",
+      "effectiveGasPrice": "21000000000",
+      "status": "success",
+      "l1Fee": "0x1ccea944",
+      "timestamp": "1789344007"
+    }
+  ]
+}

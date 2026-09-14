@@ -1,0 +1,74 @@
+{
+  "kind": "local-fork-only",
+  "forkBlock": "60952000",
+  "chainId": 31337,
+  "sampleSourceTx": "0xdcbb68a26eb5bf24f451a1f8032dfc3a0efd9031ee57cdee217b981d0e5cf769",
+  "checkedAt": "2026-09-14T08:21:11.490Z",
+  "before": {
+    "wallet": "0xD4badeac6dF3363306767FFf4DAe98f20b24e86c",
+    "stage": {
+      "index": 2,
+      "name": "OG Trainers",
+      "start": "1789430400",
+      "end": "1789516800",
+      "supply": 3000
+    },
+    "eligible": true,
+    "price": "0",
+    "limit": 1,
+    "remaining": "3000",
+    "balance": "1518988252138589897",
+    "nonce": 1340,
+    "block": "60952000",
+    "blockTime": "1789372787",
+    "simulation": {
+      "status": "not-started"
+    },
+    "hypothetical": {
+      "status": "hypothetical-success",
+      "gasUsed": "285405"
+    },
+    "fees": {
+      "maxFeePerGas": "80000000000",
+      "maxPriorityFeePerGas": "40000000000",
+      "baseFee": "20000000000",
+      "capped": false
+    },
+    "extraFees": {
+      "l1FeeUpperBound": "1678931755",
+      "operatorFee": "0",
+      "extraFeeBudget": "6715727020"
+    },
+    "budget": "29682166715727020",
+    "readyForExecution": false,
+    "pendingChecks": [
+      "REAL_SIMULATION_AT_OPENING"
+    ]
+  },
+  "stagingMs": 736,
+  "openingGateMs": 723,
+  "prepared": {
+    "tx": {
+      "type": "eip1559",
+      "chainId": 2020,
+      "to": "0xa8e9fdf57bbd991c3f494273198606632769db99",
+      "data": "[canonical calldata verified]",
+      "value": "0",
+      "nonce": 1340,
+      "gas": "371027",
+      "maxFeePerGas": "80000000000",
+      "maxPriorityFeePerGas": "40000000000"
+    },
+    "extraFeeBudget": "6715727020",
+    "budget": "29682166715727020",
+    "preparedAt": 1789374140665
+  },
+  "localReceipt": {
+    "status": "success",
+    "gasUsed": "285405",
+    "minted": "1",
+    "nftBalance": "1"
+  },
+  "duplicateRejected": true,
+  "passed": true
+}

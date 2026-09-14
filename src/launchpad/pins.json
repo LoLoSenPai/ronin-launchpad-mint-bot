@@ -1,0 +1,18 @@
+{
+  "launchpadAbi": {
+    "address": "0x36e83fa9741a794d888fEdceA4d5De522D003368",
+    "codeHash": "0x65b5775b4c486a71fa351178bf4d04cc51cdf4ae4250f98f71907fc557078bd2"
+  },
+  "allowlistAbi": {
+    "address": "0x4a9Db5f7aDE442B368bb6F4aBAbf1a2214B8BC59",
+    "codeHash": "0x6f50469f4d111b6693087b3a1ef9a013eafaa290757bf3adaf6b20bc222c99a9"
+  },
+  "nftAbi": {
+    "address": "0x6d1bc5247ca99D917d91EC52Dbbb5EF6c2435107",
+    "codeHash": "0x1927f9bdd9491093c8f76da4f07cccd17bde6677f5a615ae0113b3be5aa7c5d4"
+  },
+  "proxy": {
+    "address": "0xa8e9fdf57bbd991c3f494273198606632769db99",
+    "codeHash": "0x64b17bd7e7abf750415b18ef904241a8d0de4f0cdd9825213645af023755bb66"
+  }
+}
