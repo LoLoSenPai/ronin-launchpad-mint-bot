@@ -6,14 +6,15 @@ import { YAKKAMON } from './launchpad/yakkamon.js';
 import { preflight } from './executor/prepare.js';
 import { observe } from './observer/observe-wave.js';
 import { decodeObserved } from './observer/decode-mint.js';
+import { inspectMetadata } from './metadata/inspect.js';
 import { BotError, json, requireThat } from './util.js';
 
 async function main() {
   const args=process.argv.slice(2),command=args[0]||'help';
   if(command==='help') {
-    console.log('pnpm bot status\npnpm bot observe [--once] [--from-block NUMBER]\npnpm bot decode 0xTRANSACTION_HASH\npnpm bot preflight\npnpm bot run --dry-run\npnpm bot run\n\nRead-only: status, observe, decode, preflight, run --dry-run.\nMainnet: run requires ENABLE_MAINNET_MINT=true and explicit budget in .env.');return;
+    console.log('pnpm bot status\npnpm bot metadata [TOKEN_ID ...]\npnpm bot observe [--once] [--from-block NUMBER]\npnpm bot decode 0xTRANSACTION_HASH\npnpm bot preflight\npnpm bot run --dry-run\npnpm bot run\n\nRead-only: status, metadata, observe, decode, preflight, run --dry-run.\nMainnet: run requires ENABLE_MAINNET_MINT=true and explicit budget in .env.');return;
   }
-  requireThat(['status','observe','decode','preflight','run'].includes(command),'UNKNOWN_COMMAND');
+  requireThat(['status','metadata','observe','decode','preflight','run'].includes(command),'UNKNOWN_COMMAND');
   const config=readConfig();
   if(command==='run') {const {run}=await import('./executor/run.js');await run(config,args.includes('--dry-run'));return;}
   const health=await healthCheck(config.rpcUrls);
@@ -29,6 +30,12 @@ async function main() {
     })):undefined;
     console.log(json({mode:'read-only',contractsVerified:true,nft:YAKKAMON.nft,launchpad:YAKKAMON.launchpad,implementation:YAKKAMON.implementation,
       launch,wallet:config.wallet??'EXPECTED_WALLET_NOT_SET',walletStages,executionEnabled:config.enableMainnet,budgetRON:config.maxTotalGas?formatEther(config.maxTotalGas):'NOT_SET'}));
+  } else if(command==='metadata') {
+    const rawIds=args.slice(1);
+    requireThat(rawIds.length<=50,'TOO_MANY_TOKEN_IDS');
+    requireThat(rawIds.every(id=>/^\d+$/.test(id) && BigInt(id)>0n),'INVALID_TOKEN_ID');
+    const tokenIds=rawIds.length?rawIds.map(BigInt):undefined;
+    console.log(json(await inspectMetadata(client,tokenIds)));
   } else if(command==='preflight') console.log(json(await preflight(client,config)));
   else if(command==='observe') {
     await verifyContracts(client);
