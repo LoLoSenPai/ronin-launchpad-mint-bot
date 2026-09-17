@@ -9,11 +9,19 @@ import { decodeObserved } from './observer/decode-mint.js';
 import { inspectMetadata, SAMPLE_TOKEN_IDS } from './metadata/inspect.js';
 import { watchReveal } from './metadata/watch.js';
 import { fetchAllYakkamonListings, openSeaStatus, previewYakkamonFulfillment } from './opensea/listings.js';
+import { simulateYakkamonFulfillment } from './opensea/simulate.js';
 import { BotError, json, requireThat } from './util.js';
+
+function parseOpenSeaFulfillmentTarget(args: string[]) {
+  requireThat(args.length===3,'INVALID_OPENSEA_FULFILLMENT_TARGET');
+  const target=args[2]!;
+  requireThat(target==='--cheapest' || (/^\d+$/.test(target) && BigInt(target)>0n),'INVALID_OPENSEA_FULFILLMENT_TARGET');
+  return target==='--cheapest'?undefined:BigInt(target);
+}
 
 async function openSeaCommand(config: ReturnType<typeof readConfig>, args: string[]) {
   const subcommand=args[1]||'status';
-  requireThat(['status','listings','fulfillment'].includes(subcommand),'UNKNOWN_OPENSEA_COMMAND');
+  requireThat(['status','listings','fulfillment','simulate'].includes(subcommand),'UNKNOWN_OPENSEA_COMMAND');
   if(subcommand==='status') {
     requireThat(args.length===2 || args.length===1,'UNKNOWN_OPENSEA_OPTION');
     console.log(json(await openSeaStatus()));
@@ -44,17 +52,25 @@ async function openSeaCommand(config: ReturnType<typeof readConfig>, args: strin
     }));
     return;
   }
-  requireThat(args.length===3,'INVALID_OPENSEA_FULFILLMENT_TARGET');
-  const target=args[2]!;
-  requireThat(target==='--cheapest' || (/^\d+$/.test(target) && BigInt(target)>0n),'INVALID_OPENSEA_FULFILLMENT_TARGET');
+  if(subcommand==='simulate') {
+    const target=parseOpenSeaFulfillmentTarget(args);
+    requireThat(config.wallet,'EXPECTED_WALLET_REQUIRED');
+    const health=await healthCheck(config.rpcUrls);
+    console.log(json({rpcHealth:health.health}));
+    const endpoint=health.endpoints[0];
+    requireThat(endpoint,'NO_HEALTHY_RPC_CHECK_CLOCK_AND_ENDPOINTS');
+    console.log(json(await simulateYakkamonFulfillment(endpoint.client,target,config.wallet)));
+    return;
+  }
+  const target=parseOpenSeaFulfillmentTarget(args);
   requireThat(config.wallet,'EXPECTED_WALLET_REQUIRED');
-  console.log(json(await previewYakkamonFulfillment(target==='--cheapest'?undefined:BigInt(target),config.wallet)));
+  console.log(json(await previewYakkamonFulfillment(target,config.wallet)));
 }
 
 async function main() {
   const args=process.argv.slice(2),command=args[0]||'help';
   if(command==='help') {
-    console.log('pnpm bot status\npnpm bot metadata [TOKEN_ID ...]\npnpm bot metadata --sample\npnpm bot reveal-watch [TOKEN_ID ...] [--poll-ms N] [--once]\npnpm bot opensea status\npnpm bot opensea listings [--top N]\npnpm bot opensea fulfillment TOKEN_ID\npnpm bot opensea fulfillment --cheapest\npnpm bot observe [--once] [--from-block NUMBER]\npnpm bot decode 0xTRANSACTION_HASH\npnpm bot preflight\npnpm bot run --dry-run\npnpm bot run\n\nRead-only: status, metadata, reveal-watch, opensea *, observe, decode, preflight, run --dry-run.\nMainnet: run requires ENABLE_MAINNET_MINT=true and explicit budget in .env. OpenSea fulfillment is preview-only and never signs/broadcasts.');return;
+    console.log('pnpm bot status\npnpm bot metadata [TOKEN_ID ...]\npnpm bot metadata --sample\npnpm bot reveal-watch [TOKEN_ID ...] [--poll-ms N] [--once]\npnpm bot opensea status\npnpm bot opensea listings [--top N]\npnpm bot opensea fulfillment TOKEN_ID\npnpm bot opensea fulfillment --cheapest\npnpm bot opensea simulate TOKEN_ID\npnpm bot opensea simulate --cheapest\npnpm bot observe [--once] [--from-block NUMBER]\npnpm bot decode 0xTRANSACTION_HASH\npnpm bot preflight\npnpm bot run --dry-run\npnpm bot run\n\nRead-only: status, metadata, reveal-watch, opensea *, observe, decode, preflight, run --dry-run.\nMainnet: run requires ENABLE_MAINNET_MINT=true and explicit budget in .env. OpenSea fulfillment/simulate never sign or broadcast.');return;
   }
   requireThat(['status','metadata','reveal-watch','opensea','observe','decode','preflight','run'].includes(command),'UNKNOWN_COMMAND');
   const config=readConfig();
