@@ -145,15 +145,12 @@ function collectionSlugFromNftResponse(response: NftCollectionResponse): string 
 }
 
 export async function discoverYakkamonOpenSeaCollection() {
-  // The contract endpoint is the simplest source: OpenSea models `collection`
-  // as the associated collection slug for a contract.
   const contract = await openSeaRequest<ContractResponse>(
     `/chain/${OPENSEA_CHAIN}/contract/${YAKKAMON.nft}`,
   );
   const contractSlug = stringValue(contract.collection);
   if (contractSlug) return { slug: contractSlug, name: stringValue(contract.name) };
 
-  // Fallback for any collection/indexing edge case: resolve the collection from token #1.
   const response = await openSeaRequest<NftCollectionResponse>(
     `/chain/${OPENSEA_CHAIN}/contract/${YAKKAMON.nft}/nfts/1/collection`,
   );
@@ -189,7 +186,6 @@ export async function fetchAllYakkamonListings() {
     await sleep(80);
   }
 
-  // Keep the cheapest active listing per token. OpenSea can return multiple orders for the same NFT.
   const bestByToken = new Map<string, NormalizedOpenSeaListing>();
   for (const listing of listings) {
     const current = bestByToken.get(listing.tokenId);
@@ -256,7 +252,7 @@ export async function previewYakkamonFulfillment(tokenId: bigint, buyer: Address
         protocol_address: listing.protocolAddress,
       }],
       fulfiller: { address: buyer },
-      payment: { chain: OPENSEA_CHAIN, address: ZERO_ADDRESS },
+      payment: { chain: OPENSEA_CHAIN, token_address: ZERO_ADDRESS },
       recipient: buyer,
     }),
   });
@@ -266,7 +262,7 @@ export async function previewYakkamonFulfillment(tokenId: bigint, buyer: Address
     const data = stringValue(tx.data);
     const rawValue = stringValue(tx.value) ?? '0';
     requireThat(to, 'OPENSEA_INVALID_FULFILLMENT_TRANSACTION');
-    requireThat(chain, 'OPENSEA_INVALID_FULFILLMENT_TRANSACTION');
+    requireThat(chain?.toLowerCase() === OPENSEA_CHAIN, 'OPENSEA_FULFILLMENT_WRONG_CHAIN');
     requireThat(typeof data === 'string' && data.startsWith('0x'), 'OPENSEA_INVALID_FULFILLMENT_TRANSACTION');
     requireThat(/^\d+$/.test(rawValue), 'OPENSEA_INVALID_FULFILLMENT_TRANSACTION');
     const valueHex = stringValue(tx.value_hex);
@@ -282,11 +278,14 @@ export async function previewYakkamonFulfillment(tokenId: bigint, buyer: Address
     };
   }) : [];
   requireThat(transactions.length > 0, 'OPENSEA_FULFILLMENT_NO_TRANSACTIONS');
+  const totalValue = transactions.reduce((sum, tx) => sum + BigInt(tx.valueRaw), 0n);
   return {
     mode: 'read-only' as const,
     collection,
     listing,
     buyer,
+    listingPriceRON: listing.price.currency === 'RON' && listing.price.decimals === 18 ? listing.price.display : undefined,
+    totalTransactionValueRON: formatUnits(totalValue, 18),
     transactions,
     note: 'Preview only: no transaction was signed or broadcast.',
   };
