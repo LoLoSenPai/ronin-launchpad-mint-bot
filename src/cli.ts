@@ -7,14 +7,15 @@ import { preflight } from './executor/prepare.js';
 import { observe } from './observer/observe-wave.js';
 import { decodeObserved } from './observer/decode-mint.js';
 import { inspectMetadata, SAMPLE_TOKEN_IDS } from './metadata/inspect.js';
+import { watchReveal } from './metadata/watch.js';
 import { BotError, json, requireThat } from './util.js';
 
 async function main() {
   const args=process.argv.slice(2),command=args[0]||'help';
   if(command==='help') {
-    console.log('pnpm bot status\npnpm bot metadata [TOKEN_ID ...]\npnpm bot metadata --sample\npnpm bot observe [--once] [--from-block NUMBER]\npnpm bot decode 0xTRANSACTION_HASH\npnpm bot preflight\npnpm bot run --dry-run\npnpm bot run\n\nRead-only: status, metadata, observe, decode, preflight, run --dry-run.\nMainnet: run requires ENABLE_MAINNET_MINT=true and explicit budget in .env.');return;
+    console.log('pnpm bot status\npnpm bot metadata [TOKEN_ID ...]\npnpm bot metadata --sample\npnpm bot reveal-watch [TOKEN_ID ...] [--poll-ms N] [--once]\npnpm bot observe [--once] [--from-block NUMBER]\npnpm bot decode 0xTRANSACTION_HASH\npnpm bot preflight\npnpm bot run --dry-run\npnpm bot run\n\nRead-only: status, metadata, reveal-watch, observe, decode, preflight, run --dry-run.\nMainnet: run requires ENABLE_MAINNET_MINT=true and explicit budget in .env.');return;
   }
-  requireThat(['status','metadata','observe','decode','preflight','run'].includes(command),'UNKNOWN_COMMAND');
+  requireThat(['status','metadata','reveal-watch','observe','decode','preflight','run'].includes(command),'UNKNOWN_COMMAND');
   const config=readConfig();
   if(command==='run') {const {run}=await import('./executor/run.js');await run(config,args.includes('--dry-run'));return;}
   const health=await healthCheck(config.rpcUrls);
@@ -42,6 +43,25 @@ async function main() {
     requireThat(rawIds.every(id=>/^\d+$/.test(id) && BigInt(id)>0n),'INVALID_TOKEN_ID');
     const tokenIds=sample?[...SAMPLE_TOKEN_IDS]:rawIds.length?rawIds.map(BigInt):undefined;
     console.log(json(await inspectMetadata(client,tokenIds,{compact:sample})));
+  } else if(command==='reveal-watch') {
+    let once=false,pollMs: number|undefined;
+    const rawIds:string[]=[];
+    for(let i=1;i<args.length;i++) {
+      const arg=args[i]!;
+      if(arg==='--once') { requireThat(!once,'DUPLICATE_REVEAL_OPTION'); once=true; continue; }
+      if(arg==='--poll-ms') {
+        requireThat(pollMs===undefined,'DUPLICATE_REVEAL_OPTION');
+        const value=args[++i];
+        requireThat(value && /^\d+$/.test(value),'INVALID_REVEAL_POLL_MS');
+        pollMs=Number(value);
+        continue;
+      }
+      requireThat(!arg.startsWith('--'),'UNKNOWN_REVEAL_OPTION');
+      rawIds.push(arg);
+    }
+    requireThat(rawIds.length<=10,'INVALID_REVEAL_SENTINEL_COUNT');
+    requireThat(rawIds.every(id=>/^\d+$/.test(id) && BigInt(id)>0n),'INVALID_TOKEN_ID');
+    console.log(json(await watchReveal(client,{tokenIds:rawIds.length?rawIds.map(BigInt):undefined,pollMs,once})));
   } else if(command==='preflight') console.log(json(await preflight(client,config)));
   else if(command==='observe') {
     await verifyContracts(client);
