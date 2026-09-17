@@ -38,7 +38,8 @@ export async function run(config:Config,dryRun=false) {
       requireThat(keccak256(saved.raw)===saved.hash,'SAVED_STATE_HASH_MISMATCH');
       requireThat(saved.raw.startsWith('0x02'),'SAVED_STATE_TYPE_MISMATCH');
       requireThat(sameAddress(await recoverTransactionAddress({serializedTransaction:saved.raw as `0x02${string}`}),config.wallet),'SAVED_STATE_SIGNER_MISMATCH');
-      const parsed=parseTransaction(saved.raw) as MintTransaction;
+      const decoded=parseTransaction(saved.raw);
+      const parsed={...decoded,value:decoded.value??0n} as MintTransaction;
       requireThat(parsed.nonce===saved.nonce,'SAVED_STATE_NONCE_MISMATCH');
       const extra=await quoteExtraFees(health.endpoints[0].client,parsed,parsed.gas);
       validateTransaction(parsed,config,extra.extraFeeBudget);
@@ -91,6 +92,9 @@ export async function run(config:Config,dryRun=false) {
       }
       // Local clock only wakes the process; contract simulation against pending state authorizes timing.
       try {
+        if(Date.now()<Number(stage.start)*1000){await sleep(Math.min(250,Number(stage.start)*1000-Date.now()));continue;}
+        const latest=await endpoint.client.getBlock({blockTag:'latest'});
+        if(latest.timestamp<stage.start){await sleep(250);continue;}
         const gateStarted=performance.now();
         const validEndpoint=await openingGate(endpoints,config);
         if(!validEndpoint){await sleep(250);continue;}
