@@ -215,6 +215,8 @@ export async function fetchAllYakkamonListings() {
   return cache;
 }
 
+// Kept as a diagnostic fallback. The collection-wide cache is our primary source because
+// OpenSea's per-NFT best endpoint can temporarily disagree with the collection listing index.
 export async function getBestYakkamonListing(tokenId: bigint) {
   const collection = await discoverYakkamonOpenSeaCollection();
   let raw: WireListing;
@@ -241,8 +243,11 @@ interface FulfillmentResponse {
   }>;
 }
 
-export async function previewYakkamonFulfillment(tokenId: bigint, buyer: Address) {
-  const { collection, listing } = await getBestYakkamonListing(tokenId);
+async function fulfillmentFromListing(
+  collection: { slug: string; name?: string },
+  listing: NormalizedOpenSeaListing,
+  buyer: Address,
+) {
   const response = await openSeaRequest<FulfillmentResponse>('/listings/cross_chain_fulfillment_data', {
     method: 'POST',
     body: JSON.stringify({
@@ -281,6 +286,7 @@ export async function previewYakkamonFulfillment(tokenId: bigint, buyer: Address
   const totalValue = transactions.reduce((sum, tx) => sum + BigInt(tx.valueRaw), 0n);
   return {
     mode: 'read-only' as const,
+    listed: true as const,
     collection,
     listing,
     buyer,
@@ -289,6 +295,25 @@ export async function previewYakkamonFulfillment(tokenId: bigint, buyer: Address
     transactions,
     note: 'Preview only: no transaction was signed or broadcast.',
   };
+}
+
+export async function previewYakkamonFulfillment(tokenId: bigint, buyer: Address) {
+  // Refresh the collection index and use the exact order we just observed. This avoids an
+  // unnecessary per-token `best` lookup and matches the hot path the reveal sniper will use.
+  const cache = await fetchAllYakkamonListings();
+  const listing = cache.listings.find(item => item.tokenId === tokenId.toString());
+  if (!listing) {
+    return {
+      mode: 'read-only' as const,
+      listed: false as const,
+      requestedTokenId: tokenId,
+      fetchedAt: cache.fetchedAt,
+      activeUniqueTokens: cache.activeUniqueTokens,
+      currentCheapest: cache.listings.slice(0, 5).map(item => ({ tokenId: item.tokenId, price: item.price })),
+      note: 'The requested token was not present in a fresh collection-wide listing scan. No fulfillment request was made.',
+    };
+  }
+  return fulfillmentFromListing(cache.collection, listing, buyer);
 }
 
 export async function openSeaStatus() {
