@@ -8,16 +8,56 @@ import { observe } from './observer/observe-wave.js';
 import { decodeObserved } from './observer/decode-mint.js';
 import { inspectMetadata, SAMPLE_TOKEN_IDS } from './metadata/inspect.js';
 import { watchReveal } from './metadata/watch.js';
+import { fetchAllYakkamonListings, openSeaStatus, previewYakkamonFulfillment } from './opensea/listings.js';
 import { BotError, json, requireThat } from './util.js';
+
+async function openSeaCommand(config: ReturnType<typeof readConfig>, args: string[]) {
+  const subcommand=args[1]||'status';
+  requireThat(['status','listings','fulfillment'].includes(subcommand),'UNKNOWN_OPENSEA_COMMAND');
+  if(subcommand==='status') {
+    requireThat(args.length===2 || args.length===1,'UNKNOWN_OPENSEA_OPTION');
+    console.log(json(await openSeaStatus()));
+    return;
+  }
+  if(subcommand==='listings') {
+    let top=20;
+    for(let i=2;i<args.length;i++) {
+      const arg=args[i]!;
+      requireThat(arg==='--top','UNKNOWN_OPENSEA_OPTION');
+      const value=args[++i];
+      requireThat(value && /^\d+$/.test(value),'INVALID_OPENSEA_TOP');
+      top=Number(value);
+    }
+    requireThat(Number.isInteger(top) && top>=1 && top<=100,'INVALID_OPENSEA_TOP');
+    const cache=await fetchAllYakkamonListings();
+    const currencies:Record<string,number>={};
+    for(const listing of cache.listings) currencies[listing.price.currency]=(currencies[listing.price.currency]??0)+1;
+    console.log(json({
+      mode:'read-only',
+      fetchedAt:cache.fetchedAt,
+      collection:cache.collection,
+      rawListings:cache.rawCount,
+      activeUniqueTokens:cache.activeUniqueTokens,
+      currencies,
+      cacheFile:'runtime/opensea-listings.json',
+      cheapest:cache.listings.slice(0,top),
+    }));
+    return;
+  }
+  requireThat(args.length===3 && /^\d+$/.test(args[2]??'') && BigInt(args[2]!)>0n,'INVALID_TOKEN_ID');
+  requireThat(config.wallet,'EXPECTED_WALLET_REQUIRED');
+  console.log(json(await previewYakkamonFulfillment(BigInt(args[2]!),config.wallet)));
+}
 
 async function main() {
   const args=process.argv.slice(2),command=args[0]||'help';
   if(command==='help') {
-    console.log('pnpm bot status\npnpm bot metadata [TOKEN_ID ...]\npnpm bot metadata --sample\npnpm bot reveal-watch [TOKEN_ID ...] [--poll-ms N] [--once]\npnpm bot observe [--once] [--from-block NUMBER]\npnpm bot decode 0xTRANSACTION_HASH\npnpm bot preflight\npnpm bot run --dry-run\npnpm bot run\n\nRead-only: status, metadata, reveal-watch, observe, decode, preflight, run --dry-run.\nMainnet: run requires ENABLE_MAINNET_MINT=true and explicit budget in .env.');return;
+    console.log('pnpm bot status\npnpm bot metadata [TOKEN_ID ...]\npnpm bot metadata --sample\npnpm bot reveal-watch [TOKEN_ID ...] [--poll-ms N] [--once]\npnpm bot opensea status\npnpm bot opensea listings [--top N]\npnpm bot opensea fulfillment TOKEN_ID\npnpm bot observe [--once] [--from-block NUMBER]\npnpm bot decode 0xTRANSACTION_HASH\npnpm bot preflight\npnpm bot run --dry-run\npnpm bot run\n\nRead-only: status, metadata, reveal-watch, opensea *, observe, decode, preflight, run --dry-run.\nMainnet: run requires ENABLE_MAINNET_MINT=true and explicit budget in .env. OpenSea fulfillment is preview-only and never signs/broadcasts.');return;
   }
-  requireThat(['status','metadata','reveal-watch','observe','decode','preflight','run'].includes(command),'UNKNOWN_COMMAND');
+  requireThat(['status','metadata','reveal-watch','opensea','observe','decode','preflight','run'].includes(command),'UNKNOWN_COMMAND');
   const config=readConfig();
   if(command==='run') {const {run}=await import('./executor/run.js');await run(config,args.includes('--dry-run'));return;}
+  if(command==='opensea') {await openSeaCommand(config,args);return;}
   const health=await healthCheck(config.rpcUrls);
   console.log(json({rpcHealth:health.health}));
   const endpoint=health.endpoints[0];requireThat(endpoint,'NO_HEALTHY_RPC_CHECK_CLOCK_AND_ENDPOINTS');
@@ -74,7 +114,7 @@ async function main() {
   }
 }
 main().catch(e=>{
-  // Never dump process.env, a private key, raw signed bytes, or viem/RPC error messages.
-  console.error(json({error:e instanceof BotError?e.code:'UNEXPECTED_ERROR',action:'Voir README.md. Aucun detail RPC sensible n’est affiche.'}));
+  // Never dump process.env, a private key, raw signed bytes, API keys, or RPC error messages.
+  console.error(json({error:e instanceof BotError?e.code:'UNEXPECTED_ERROR',action:'Voir README.md. Aucun detail RPC/API sensible n’est affiche.'}));
   process.exitCode=1;
 });
