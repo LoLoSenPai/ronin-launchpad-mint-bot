@@ -49,13 +49,15 @@ interface ListingsResponse {
   next?: unknown;
 }
 
-interface CollectionResponse {
+interface ContractResponse {
+  collection?: unknown;
+  name?: unknown;
+}
+
+interface NftCollectionResponse {
   slug?: unknown;
   name?: unknown;
-  collection?: {
-    slug?: unknown;
-    name?: unknown;
-  };
+  collection?: unknown;
 }
 
 export interface NormalizedOpenSeaListing {
@@ -130,14 +132,37 @@ function normalizeListing(raw: WireListing): NormalizedOpenSeaListing | undefine
   };
 }
 
+function collectionSlugFromNftResponse(response: NftCollectionResponse): string | undefined {
+  const direct = stringValue(response.slug);
+  if (direct) return direct;
+  const collection = response.collection;
+  const asString = stringValue(collection);
+  if (asString) return asString;
+  if (collection && typeof collection === 'object' && !Array.isArray(collection)) {
+    return stringValue((collection as Record<string, unknown>).slug);
+  }
+  return undefined;
+}
+
 export async function discoverYakkamonOpenSeaCollection() {
-  const response = await openSeaRequest<CollectionResponse>(
+  // The contract endpoint is the simplest source: OpenSea models `collection`
+  // as the associated collection slug for a contract.
+  const contract = await openSeaRequest<ContractResponse>(
+    `/chain/${OPENSEA_CHAIN}/contract/${YAKKAMON.nft}`,
+  );
+  const contractSlug = stringValue(contract.collection);
+  if (contractSlug) return { slug: contractSlug, name: stringValue(contract.name) };
+
+  // Fallback for any collection/indexing edge case: resolve the collection from token #1.
+  const response = await openSeaRequest<NftCollectionResponse>(
     `/chain/${OPENSEA_CHAIN}/contract/${YAKKAMON.nft}/nfts/1/collection`,
   );
-  const collection = response.collection ?? response;
-  const slug = stringValue(collection.slug);
+  const slug = collectionSlugFromNftResponse(response);
   requireThat(slug, 'OPENSEA_COLLECTION_SLUG_MISSING');
-  return { slug, name: stringValue(collection.name) };
+  const nestedName = response.collection && typeof response.collection === 'object' && !Array.isArray(response.collection)
+    ? stringValue((response.collection as Record<string, unknown>).name)
+    : undefined;
+  return { slug, name: stringValue(response.name) ?? nestedName };
 }
 
 export async function fetchAllYakkamonListings() {
@@ -240,7 +265,10 @@ export async function previewYakkamonFulfillment(tokenId: bigint, buyer: Address
     const chain = stringValue(tx.chain);
     const data = stringValue(tx.data);
     const rawValue = stringValue(tx.value) ?? '0';
-    requireThat(to && chain && data?.startsWith('0x') && /^\d+$/.test(rawValue), 'OPENSEA_INVALID_FULFILLMENT_TRANSACTION');
+    requireThat(to, 'OPENSEA_INVALID_FULFILLMENT_TRANSACTION');
+    requireThat(chain, 'OPENSEA_INVALID_FULFILLMENT_TRANSACTION');
+    requireThat(typeof data === 'string' && data.startsWith('0x'), 'OPENSEA_INVALID_FULFILLMENT_TRANSACTION');
+    requireThat(/^\d+$/.test(rawValue), 'OPENSEA_INVALID_FULFILLMENT_TRANSACTION');
     const valueHex = stringValue(tx.value_hex);
     return {
       index,
