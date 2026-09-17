@@ -39,7 +39,7 @@ interface MetadataSummary {
   keys: string[];
 }
 
-interface FetchResult {
+export interface FetchResult {
   status: 'ok' | 'http-error' | 'unsupported-uri' | 'fetch-failed';
   uri?: string;
   httpStatus?: number;
@@ -113,7 +113,7 @@ function summarizeJson(value: unknown, compact: boolean): MetadataSummary | unde
   return summary;
 }
 
-async function fetchMetadata(uri: string, compact: boolean): Promise<FetchResult> {
+export async function fetchMetadata(uri: string, compact = true): Promise<FetchResult> {
   const url = resolveMetadataUrl(uri);
   if (!url) return { status: 'unsupported-uri', uri };
 
@@ -121,7 +121,12 @@ async function fetchMetadata(uri: string, compact: boolean): Promise<FetchResult
   try {
     const response = await fetch(url, {
       signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
-      headers: { accept: 'application/json,text/plain;q=0.9,*/*;q=0.8' },
+      cache: 'no-store',
+      headers: {
+        accept: 'application/json,text/plain;q=0.9,*/*;q=0.8',
+        'cache-control': 'no-cache',
+        pragma: 'no-cache',
+      },
     });
     const raw = await response.text();
     const sha256 = createHash('sha256').update(raw).digest('hex');
