@@ -6,13 +6,13 @@ import { YAKKAMON } from './launchpad/yakkamon.js';
 import { preflight } from './executor/prepare.js';
 import { observe } from './observer/observe-wave.js';
 import { decodeObserved } from './observer/decode-mint.js';
-import { inspectMetadata } from './metadata/inspect.js';
+import { inspectMetadata, SAMPLE_TOKEN_IDS } from './metadata/inspect.js';
 import { BotError, json, requireThat } from './util.js';
 
 async function main() {
   const args=process.argv.slice(2),command=args[0]||'help';
   if(command==='help') {
-    console.log('pnpm bot status\npnpm bot metadata [TOKEN_ID ...]\npnpm bot observe [--once] [--from-block NUMBER]\npnpm bot decode 0xTRANSACTION_HASH\npnpm bot preflight\npnpm bot run --dry-run\npnpm bot run\n\nRead-only: status, metadata, observe, decode, preflight, run --dry-run.\nMainnet: run requires ENABLE_MAINNET_MINT=true and explicit budget in .env.');return;
+    console.log('pnpm bot status\npnpm bot metadata [TOKEN_ID ...]\npnpm bot metadata --sample\npnpm bot observe [--once] [--from-block NUMBER]\npnpm bot decode 0xTRANSACTION_HASH\npnpm bot preflight\npnpm bot run --dry-run\npnpm bot run\n\nRead-only: status, metadata, observe, decode, preflight, run --dry-run.\nMainnet: run requires ENABLE_MAINNET_MINT=true and explicit budget in .env.');return;
   }
   requireThat(['status','metadata','observe','decode','preflight','run'].includes(command),'UNKNOWN_COMMAND');
   const config=readConfig();
@@ -31,11 +31,17 @@ async function main() {
     console.log(json({mode:'read-only',contractsVerified:true,nft:YAKKAMON.nft,launchpad:YAKKAMON.launchpad,implementation:YAKKAMON.implementation,
       launch,wallet:config.wallet??'EXPECTED_WALLET_NOT_SET',walletStages,executionEnabled:config.enableMainnet,budgetRON:config.maxTotalGas?formatEther(config.maxTotalGas):'NOT_SET'}));
   } else if(command==='metadata') {
-    const rawIds=args.slice(1);
+    const metadataArgs=args.slice(1);
+    const sample=metadataArgs.includes('--sample');
+    const flags=metadataArgs.filter(arg=>arg.startsWith('--'));
+    requireThat(flags.every(flag=>flag==='--sample'),'UNKNOWN_METADATA_OPTION');
+    requireThat(flags.length<=1,'DUPLICATE_METADATA_OPTION');
+    const rawIds=metadataArgs.filter(arg=>!arg.startsWith('--'));
+    requireThat(!(sample && rawIds.length),'METADATA_SAMPLE_WITH_IDS');
     requireThat(rawIds.length<=50,'TOO_MANY_TOKEN_IDS');
     requireThat(rawIds.every(id=>/^\d+$/.test(id) && BigInt(id)>0n),'INVALID_TOKEN_ID');
-    const tokenIds=rawIds.length?rawIds.map(BigInt):undefined;
-    console.log(json(await inspectMetadata(client,tokenIds)));
+    const tokenIds=sample?[...SAMPLE_TOKEN_IDS]:rawIds.length?rawIds.map(BigInt):undefined;
+    console.log(json(await inspectMetadata(client,tokenIds,{compact:sample})));
   } else if(command==='preflight') console.log(json(await preflight(client,config)));
   else if(command==='observe') {
     await verifyContracts(client);
