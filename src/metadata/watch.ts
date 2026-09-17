@@ -1,5 +1,5 @@
 import type { Client } from '../ronin.js';
-import { log, requireThat, sleep } from '../util.js';
+import { BotError, log, requireThat, sleep } from '../util.js';
 import { fetchMetadata, inspectMetadata, type FetchResult } from './inspect.js';
 
 export const DEFAULT_REVEAL_SENTINELS = [1n, 50n, 1500n, 5000n, 9000n] as const;
@@ -50,9 +50,7 @@ export async function watchReveal(
     requireThat(token.tokenURI && token.fetch?.status === 'ok' && token.fetch.sha256, 'REVEAL_SENTINEL_FETCH_FAILED');
     const status = normalized(token.fetch.metadata?.status);
     const rarity = stringValue(token.fetch.metadata?.rarity);
-    if (rarity || (status && status !== 'hidden' && status !== 'bad egg')) {
-      throw Object.assign(new Error('REVEAL_ALREADY_VISIBLE'), { code: 'REVEAL_ALREADY_VISIBLE' });
-    }
+    if (rarity || (status && status !== 'hidden' && status !== 'bad egg')) throw new BotError('REVEAL_ALREADY_VISIBLE');
     requireThat(status === 'hidden', 'REVEAL_SENTINEL_NOT_HIDDEN');
     return {
       tokenId: token.tokenId,
