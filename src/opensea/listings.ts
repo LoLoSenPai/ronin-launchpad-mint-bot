@@ -247,6 +247,7 @@ async function fulfillmentFromListing(
   collection: { slug: string; name?: string },
   listing: NormalizedOpenSeaListing,
   buyer: Address,
+  fetchedAt: string,
 ) {
   const response = await openSeaRequest<FulfillmentResponse>('/listings/cross_chain_fulfillment_data', {
     method: 'POST',
@@ -287,6 +288,7 @@ async function fulfillmentFromListing(
   return {
     mode: 'read-only' as const,
     listed: true as const,
+    fetchedAt,
     collection,
     listing,
     buyer,
@@ -297,11 +299,15 @@ async function fulfillmentFromListing(
   };
 }
 
-export async function previewYakkamonFulfillment(tokenId: bigint, buyer: Address) {
-  // Refresh the collection index and use the exact order we just observed. This avoids an
-  // unnecessary per-token `best` lookup and matches the hot path the reveal sniper will use.
+export async function previewYakkamonFulfillment(tokenId: bigint | undefined, buyer: Address) {
+  // Refresh the collection index and use the exact order we just observed. Passing undefined
+  // intentionally selects the current floor, which is useful for live fulfillment testing.
   const cache = await fetchAllYakkamonListings();
-  const listing = cache.listings.find(item => item.tokenId === tokenId.toString());
+  requireThat(cache.listings.length > 0, 'OPENSEA_NO_ACTIVE_LISTINGS');
+  const listing = tokenId === undefined
+    ? cache.listings[0]!
+    : cache.listings.find(item => item.tokenId === tokenId.toString());
+
   if (!listing) {
     return {
       mode: 'read-only' as const,
@@ -313,7 +319,7 @@ export async function previewYakkamonFulfillment(tokenId: bigint, buyer: Address
       note: 'The requested token was not present in a fresh collection-wide listing scan. No fulfillment request was made.',
     };
   }
-  return fulfillmentFromListing(cache.collection, listing, buyer);
+  return fulfillmentFromListing(cache.collection, listing, buyer, cache.fetchedAt);
 }
 
 export async function openSeaStatus() {
